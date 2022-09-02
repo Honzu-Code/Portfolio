@@ -1,0 +1,13 @@
+for status:
+> sudo systemctl status snakecppserver.service
+for stop:
+> sudo systemctl stop snakecppserver.service
+for start:
+> sudo systemctl start snakecppserver.service
+for enable autostart
+> sudo systemctl enable snakecppserver.service
+for disable autostart
+> sudo systemctl disable snakecppserver.service
+
+Don't forget to stop and start after recompile.
+

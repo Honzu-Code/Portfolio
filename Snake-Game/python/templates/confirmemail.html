@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Email</title>
+</head>
+<body style="background-color: #1d1a1c; color: #7ab69c;">
+    {% if message == "Congratulations :) you can login now: " %}
+    {{message}}
+    <a href="/login">Click to login</a>
+    {% else %}
+     {{message}}
+    {% endif %}  
+</body>
+</html>

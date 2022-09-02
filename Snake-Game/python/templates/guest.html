@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/register.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"> 
+    <title>Snake Game</title>
+</head>
+<body>
+   <div class="box"> 
+    <form action="/guest" method="POST">
+        <div class="image">
+             <img src="/static/images/SnakeGame_logo.jpg" alt="Snake Game">
+        </div>
+            <div id="register_text">Play as Guest</div> 
+            <span class="span_text">Nick</span>
+            <input type="text" id="login" name="nick" maxlength="20">
+            <input type="submit" value="Play" id="submit" name="submit">
+            <a href="/login" id="log">If you have an account, log in</a>
+    </form>
+    
+   </div>
+   <footer id="footer">
+      
+   </footer>
+</body>
+</html>

@@ -1,0 +1,639 @@
+*
+{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+  background-color: #1d1a1c ;
+  font-size: 0.875em;
+  color: #7ab69c ;
+  letter-spacing: 1.5px;
+}
+
+
+#header
+{
+    width: 100%;
+    height: 15vh;
+    font-size: 0.875em;
+}
+
+#nav
+{
+    display: flex;
+    justify-content: space-between;
+    background-image: url("/static/images/HexaSnake_Tile5_top.png");
+    background-position: left;
+    background-repeat: repeat;
+}
+
+.nav_element
+{
+    position: relative;
+    color: #79b69d;
+    width: 100%;
+    height: 15vh;
+
+}
+
+.nav_element a
+{
+    position: relative;
+    display: block;
+    color: #6f7c75;
+    width: 100%;
+    height: 100%;
+}
+
+.nav_element a:hover
+{
+    position: relative;
+    display: block;
+    color: #b6ccbf;
+    text-shadow: 2px 2px 5px #84c6a5;
+    width: 100%;
+    height: 100%;
+}
+
+#home
+{
+    width: 50%;
+    position: relative;
+}
+
+.ads
+{
+    position: relative;
+    height: 100px;
+    border: 1px solid white;
+    margin-bottom: 10px;
+}
+
+.ads a
+{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 100px;
+    text-decoration: none;
+    color: white;
+}
+
+#good
+{
+    text-align: center;
+    color: white;
+}
+
+
+#home a div
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80px;
+    height: 80px;
+    background-image: url("/static/images/transparent-logo.png");
+    background-repeat: no-repeat;
+    background-size: 80px;
+}
+
+#account
+{
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+}
+
+#account button
+{
+    position: relative;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /*
+    background-color: #5aa261;
+    border: none;
+    font-family: 'Noto Sans', sans-serif;
+    width: 75px;
+    height: 25px;
+    border-radius: 3px;
+    */
+    font-family: 'Noto Sans', sans-serif;
+    border-radius: 25px;
+    border: 2px solid #b4c79e;
+    font-size: 0.875em;
+    color: #b6c8b9;
+    letter-spacing: 1.5px;
+    background-image: linear-gradient(#201f20, #2e4236);
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#account button a
+{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    line-height: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+#account:hover button
+{
+    position: relative;
+    transition: 0.5s;
+    top: 30%;
+}
+
+#account:hover #in_account
+{
+    position: relative;
+    top: 35%;
+    transition: 0.5s;
+}
+
+#in_account
+{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Noto Sans', sans-serif;
+}
+
+#in_account i
+{
+    display: block;
+    text-align: center;
+    font-size: 30px;
+}
+
+#in_account a
+{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+#play a span,#statistic a span,#ranking a span,#shop a span
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 30px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+#section
+{
+    display: flex;
+    margin-top: 3px;
+    width: 100%;
+    height: 80vh;
+}
+
+#main
+{
+    width: 80%;
+    position: relative;
+    padding: 10px;
+}
+
+#aside_left,#aside_right
+{
+    text-align: center;
+    width: 10.10%;
+}
+
+
+#footer
+{
+    position: relative;
+    background-image: url("/static/images/HexaSnake_Tile5_bottom.png");
+    background-position: left;
+    background-repeat: repeat;
+    text-align: center;
+    align-items: center;
+    height: 7.5vh;
+}
+
+#copyright
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+/*        HOME        */
+
+
+#main_home
+{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#main_home h2
+{
+    font-size: 24px;
+    font-family: 'Noto Sans', sans-serif;
+    text-align: center;
+}
+
+#support
+{
+    position: relative;
+    top: 75%;
+    display: block;
+    text-align: center;
+    font-size: 17px;
+}
+
+
+/*        PLAY        */
+
+#main_type_game_message
+{
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 30vh;
+}
+
+#main_type_game
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 81vh;
+    height: 210px;
+}
+
+#main_type_game > div
+{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    height: 50px;
+    margin: 10px 0px;
+    text-align: center;
+    font-size: 35px;
+
+}
+
+#main_type_game > div a
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Noto Sans', sans-serif;
+    border-radius: 25px;
+    border: 2px solid #b4c79e;
+    font-size: 0.875em;
+    color: #b6c8b9;
+    letter-spacing: 1.5px;
+    background-image: linear-gradient(#201f20, #2e4236);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:  1s ease-Out;
+    text-decoration: none;
+}
+
+#main_type_game > div a:hover i, #main_type_game > div a:hover span
+{
+    color: #585156;
+    background:#c8f3b9;
+}
+
+#main_type_game > div i
+{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #b6c8b9;
+    width: 25%;
+}
+
+#main_type_game > div span
+{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: #b6c8b9;
+    font-size: 17px;
+    height: 100%;
+    width: 75%;
+}
+
+/*       STATISTIC          */
+
+#statistic_player
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    border-radius: 25px;
+    border-style: none solid none solid;
+    border-color: #365145;
+    padding: 20px;
+}
+
+#statistic_player div
+{
+    padding: 20px;
+}
+
+#statistic_main_data
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#statistic_main_data i
+{
+    text-align: center;
+    font-size: 100px;
+    margin-bottom: 25px;
+    margin-top: -8px;
+}
+
+.statistic_main_data_p
+{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+    padding: 5px 10px;
+    margin-top: 0px;
+    color: #6f7c70;
+    background-image: linear-gradient(to right, #212121, #1d1a1c);
+    border-left: 1px solid #1e4231;
+    font-size: 25px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.statistic_main_data_p:first-child
+{
+    margin-top: 0px;
+}
+
+.statistic_main_data_p span,.statistic_other_data_p span
+{
+    padding-left: 30px;
+    color: #abffdb;
+    font-weight: bold;
+}
+.statistic_other_data_p
+{
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    color: #6f7c70;
+    margin: 10px 0px;
+    padding: 5px 10px;
+    background-image: linear-gradient(to right, #212121, #1d1a1c);
+    border-left: 1px solid #1e4231;
+}
+
+#statistic_next_level
+{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+/*        RANKING            */
+
+
+#see_ranking_choosed
+{
+    display: flex;
+    width: 50%;
+    font-size: 16px;
+}
+
+#see_ranking_choosed a
+{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    text-decoration: none;
+    font-family: 'Noto Sans', sans-serif;
+    background-image: linear-gradient(#1f1f20, #28322e);
+    border-radius: 25px 25px 0px 0px;
+    border-style: solid;
+    border: 2px solid #365145;
+    border-bottom: none;
+    color: #b6ccbf;
+}
+
+#see_ranking_choosed a:hover
+{
+    background-image: linear-gradient(#7fbba2, #28322e);
+    color: #242a28;
+}
+
+#see_ranking_choosed a:first-child
+{
+    border-left: none;
+}
+
+#see_ranking
+{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+}
+
+#ranking_table
+{
+    border-collapse: collapse;
+    font-family: 'Noto Sans', sans-serif;
+    border: 1px solid #365145;
+}
+
+#ranking_table tr:nth-child(even)
+{
+    background-image: linear-gradient(to right, #28322e, #1f1f20);
+}
+
+.ranking_table_first_row
+{
+    width: 100%;
+    color:#abffdb;
+    font-weight: bold;
+}
+
+.ranking_table_first_row td
+{
+    width: 300px;
+    padding: 8px 10px;
+    font-size: 17px;
+    text-align: center;
+}
+
+.ranking_table_row
+{
+    width: 100%;
+}
+
+.ranking_table_row td
+{
+    width: 200px;
+    padding: 8px 10px;
+    font-size: 17px;
+    text-align: center;
+}
+
+.ranking_table_player_position
+{
+    color: rgb(18, 214, 228);
+    background-color: black;
+}
+
+#ranking_buttons
+{
+    position: absolute;
+    left: 50%;
+    top: 110%;
+    transform: translateX(-50%);
+    width: 7vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+#ranking_buttons a
+{
+    font-size: 25px;
+}
+
+#ranking_buttons a i
+{
+    color: #365145;
+}
+
+/*        SHOP        */
+
+#shop_text
+{
+    text-align: center;
+    font-size: 25px;
+}
+
+#shop_level
+{
+   padding-left: 4px;
+}
+
+#shop_form
+{
+   position: relative;
+   display: flex;
+   flex-direction: column;
+}
+
+.shop_options
+{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 10px 0px;
+    padding: 2px;
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    border: 2px solid #2d3f35;
+    border-radius: 25px;
+}
+
+.shop_options button
+{
+  position: relative;
+  overflow: hidden;
+  font-family: 'Noto Sans', sans serif;
+  border-radius: 25px;
+  border: 2px solid #2d3f35;
+  font-size: 0.875em;
+  height: 100%;
+  color: #b6c8b9;
+  letter-spacing: 1.5px;
+  background: none;
+  background-image: linear-gradient(rgba(31,32,31,0), rgba(31,32,31,1));
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.shop_options button:hover
+{
+    color: #70646c;
+    background:#c8f3b9;
+}
+
+.shop_options span
+{
+    width: 20%;
+}
+
+#choosed_skin
+{
+  position: relative;
+  overflow: hidden;
+  font-family: 'Noto Sans', sans serif;
+  border-radius: 25px;
+  border: 2px solid #2d3f35;
+  font-size: 0.875em;
+  color: #70646c;
+  letter-spacing: 1.5px;
+  background:#c8f3b9;
+  background-image: linear-gradient(rgba(31,32,31,0), rgba(31,32,31,1));
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#shop_section
+{
+    display: flex;
+    margin-top: 3px;
+    width: 100%;
+    height: 275vh;
+}

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" href= "/static/styles/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet">
+    <title>Welcome in Snake Game</title>
+</head>
+<body>
+    <header id="header">
+        <nav id="nav">
+            <div class="nav_element" id="home">
+                <a href="/logo"><div id="img"></div></a>
+            </div>
+            <div class="nav_element" id="play">
+                <a href="/play"><span>Play</span></a>
+            </div>
+            <div class="nav_element" id="statistic">
+                <a href="/statistic"><span>Statistics</span></a>
+            </div>
+            <div class="nav_element" id="ranking">
+                <a href="/ranking"><span>Ranking</span></a>
+            </div>
+            <div class="nav_element" id="shop">
+                <a href="/shop"><span>Skins</span></a>
+            </div>
+            <div class="nav_element" id="account">
+               <div id="in_account">
+                <i class="fas fa-user"></i>
+                <a href="#"><span>{{player_status}} {{username}}</span></a>
+               </div>
+               <button type="button"><a href="/logout">Log Out</a></button>
+            </div>
+        </nav>
+    </header>
+    {% if type_choose == "see_shop" %}
+    <section id="shop_section">
+    {% else %}
+    <section id="section">
+    {% endif %}
+        <aside id="aside_left">
+
+        </aside>
+        <main id="main">
+          {% if type_choose == "main_home" %}
+            <div id="main_home">
+              <h2>Hello {{username}} enjoy the game :)</h2>
+           </div>
+           <span id="support"></span>
+          {% endif %}
+
+         {% if type_choose == "main_choose_type_game" %}
+           <h1 id="main_type_game_message">Choose Type of Game:</h1>
+           <div id="main_type_game">
+               <div id="game_auto_normal">
+                <a href="/auto_normal_play">
+                 <i class="fas fa-cogs"></i>
+                 <span>Auto Normal</span>
+                </a>
+               </div>
+               <div id="game_room_normal">
+                <a href="/room_normal_play">
+                 <i class="fas fa-check-square"></i>
+                 <span>Choose Normal</span>
+                </a>
+               </div>
+                <div id="game_ranking">
+                <a href="/ranking_play">
+                 <i class="fas fa-trophy"></i>
+                 <span>Ranking</span>
+                </a>
+               </div>
+           </div>
+           {% endif %}
+
+        {% if type_choose == "see_ranking" %}
+        <div id="see_ranking">
+            <div id="see_ranking_choosed">
+                <a href="#" onclick="switch_ranking('none','normal',true)">Normal</a>
+                <a href="#" onclick="switch_ranking('none','tournament',true)">Tournament</a>
+            </div>
+            <table id="ranking_table">
+            </table>
+            <div id="ranking_buttons">
+                <a href="#" onclick="switch_ranking('left')"><i class="fas fa-chevron-circle-left"></i></a>
+                <a href="#" onclick="switch_ranking('right')"><i class="fas fa-chevron-circle-right"></i></a>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if type_choose == "see_statistic" %}
+        <div id="statistic_player">
+            <div id="statistic_main_data">
+                <i class="fas fa-user"></i>
+                <p class="statistic_main_data_p">Nick: <span>{{username}}</span></p>
+                <p class="statistic_main_data_p">Status: <span>{{player_status}}</span></p>
+            </div>
+            <div id="statistic_other_data">
+                <p class="statistic_other_data_p">Level: <span id="statistic_player_level"></span></p>
+                <p class="statistic_other_data_p">Level Points: <span id="statistic_player_points_level"></span></p>
+                <p class="statistic_other_data_p">Ranking: <span id="statistic_player_ranking"></span></p>
+                <p class="statistic_other_data_p">Kills: <span id="statistic_player_win"></span></p>
+                <p class="statistic_other_data_p">Deaths: <span id="statistic_player_defeat"></span></p>
+                <p class="statistic_other_data_p">Ranking Points: <span id="statistic_player_points_ranking"></span></p>
+            </div>
+        </div>
+        <span id="statistic_next_level">You need {{nextlevel}} points to next level</span>
+        {% endif %}
+        {% if type_choose == "see_shop" %}
+         <h3 id="shop_text">Choose skin:</h3>
+         <form action="/shop" method="POST" id="shop_form">
+           <div class="shop_options">
+                <span id="shop_level">1 - 2 Level</span>
+                <img src="/static/images/sprites/snake01.png">
+                {% if choosed_skin == "static/images/sprites/snake01.png" %}
+                <button type="submit" name="data" value="Skin1" id="choosed_skin">Skin1</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin1">Skin1</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">3 - 4 Level</span>
+                <img src="/static/images/sprites/snake02.png">
+                {% if choosed_skin == "static/images/sprites/snake02.png" %}
+                <button type="submit" name="data" value="Skin2" id="choosed_skin">Skin2</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin2">Skin2</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">5 - 6 Level</span>
+                <img src="/static/images/sprites/snake03.png">
+                {% if choosed_skin == "static/images/sprites/snake03.png" %}
+                <button type="submit" name="data" value="Skin3" id="choosed_skin">Skin3</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin3">Skin3</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">7 - 8 Level</span>
+                <img src="/static/images/sprites/snake04.png">
+                {% if choosed_skin == "static/images/sprites/snake04.png" %}
+                <button type="submit" name="data" value="Skin4" id="choosed_skin">Skin4</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin4">Skin4</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">9 - 10 Level</span>
+                <img src="/static/images/sprites/snake05.png">
+                {% if choosed_skin == "static/images/sprites/snake05.png" %}
+                <button type="submit" name="data" value="Skin5" id="choosed_skin">Skin5</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin5">Skin5</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">11 - 12 Level</span>
+                <img src="/static/images/sprites/snake06.png">
+                {% if choosed_skin == "static/images/sprites/snake06.png" %}
+                <button type="submit" name="data" value="Skin6" id="choosed_skin">Skin6</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin6">Skin6</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">13 - 14 Level</span>
+                <img src="/static/images/sprites/snake07.png">
+                {% if choosed_skin == "static/images/sprites/snake07.png" %}
+                <button type="submit" name="data" value="Skin7" id="choosed_skin">Skin7</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin7">Skin7</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">15 - 16 Level</span>
+                <img src="/static/images/sprites/snake08.png">
+                {% if choosed_skin == "static/images/sprites/snake08.png" %}
+                <button type="submit" name="data" value="Skin8" id="choosed_skin">Skin8</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin8">Skin8</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">17 - 18 Level</span>
+                <img src="/static/images/sprites/snake09.png">
+                {% if choosed_skin == "static/images/sprites/snake09.png" %}
+                <button type="submit" name="data" value="Skin9" id="choosed_skin">Skin9</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin9">Skin9</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">19 - 20 Level</span>
+                <img src="/static/images/sprites/snake10.png">
+                {% if choosed_skin == "static/images/sprites/snake10.png" %}
+                <button type="submit" name="data" value="Skin10" id="choosed_skin">Skin10</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin10">Skin10</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">21 - 22 Level</span>
+                <img src="/static/images/sprites/snake11.png">
+                {% if choosed_skin == "static/images/sprites/snake11.png" %}
+                <button type="submit" name="data" value="Skin11" id="choosed_skin">Skin11</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin11">Skin11</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">23 - 24 Level</span>
+                <img src="/static/images/sprites/snake12.png">
+                {% if choosed_skin == "static/images/sprites/snake12.png" %}
+                <button type="submit" name="data" value="Skin12" id="choosed_skin">Skin12</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin12">Skin12</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">25 - 26 Level</span>
+                <img src="/static/images/sprites/snake13.png">
+                {% if choosed_skin == "static/images/sprites/snake13.png" %}
+                <button type="submit" name="data" value="Skin13" id="choosed_skin">Skin13</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin13">Skin13</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">27 - 28 Level</span>
+                <img src="/static/images/sprites/snake14.png">
+                {% if choosed_skin == "static/images/sprites/snake14.png" %}
+                <button type="submit" name="data" value="Skin14" id="choosed_skin">Skin14</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin14">Skin14</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">29 - 30 Level</span>
+                <img src="/static/images/sprites/snake15.png">
+                {% if choosed_skin == "static/images/sprites/snake15.png" %}
+                <button type="submit" name="data" value="Skin15" id="choosed_skin">Skin15</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin15">Skin15</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">31 - 32 Level</span>
+                <img src="/static/images/sprites/snake16.png">
+                {% if choosed_skin == "static/images/sprites/snake16.png" %}
+                <button type="submit" name="data" value="Skin16" id="choosed_skin">Skin16</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin16">Skin16</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">33 - 34 Level</span>
+                <img src="/static/images/sprites/snake17.png">
+                {% if choosed_skin == "static/images/sprites/snake17.png" %}
+                <button type="submit" name="data" value="Skin17" id="choosed_skin">Skin17</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin17">Skin17</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">35 - 36 Level</span>
+                <img src="/static/images/sprites/snake18.png">
+                {% if choosed_skin == "static/images/sprites/snake18.png" %}
+                <button type="submit" name="data" value="Skin18" id="choosed_skin">Skin18</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin18">Skin18</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">37 - 38 Level</span>
+                <img src="/static/images/sprites/snake19.png">
+                {% if choosed_skin == "static/images/sprites/snake19.png" %}
+                <button type="submit" name="data" value="Skin19" id="choosed_skin">Skin19</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin19">Skin19</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">39 - 40 Level</span>
+                <img src="/static/images/sprites/snake20.png">
+                {% if choosed_skin == "static/images/sprites/snake20.png" %}
+                <button type="submit" name="data" value="Skin20" id="choosed_skin">Skin20</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin20">Skin20</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">41 - 42 Level</span>
+                <img src="/static/images/sprites/snake21.png">
+                {% if choosed_skin == "static/images/sprites/snake21.png" %}
+                <button type="submit" name="data" value="Skin21" id="choosed_skin">Skin21</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin21">Skin21</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">43 - 44 Level</span>
+                <img src="/static/images/sprites/snake22.png">
+                {% if choosed_skin == "static/images/sprites/snake22.png" %}
+                <button type="submit" name="data" value="Skin22" id="choosed_skin">Skin22</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin22">Skin22</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">45 - 46 Level</span>
+                <img src="/static/images/sprites/snake23.png">
+                {% if choosed_skin == "static/images/sprites/snake23.png" %}
+                <button type="submit" name="data" value="Skin23" id="choosed_skin">Skin23</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin23">Skin23</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">47 - 48 Level</span>
+                <img src="/static/images/sprites/snake24.png">
+                {% if choosed_skin == "static/images/sprites/snake24.png" %}
+                <button type="submit" name="data" value="Skin24" id="choosed_skin">Skin24</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin24">Skin24</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">49 - 50 Level</span>
+                <img src="/static/images/sprites/snake25.png">
+                {% if choosed_skin == "static/images/sprites/snake25.png" %}
+                <button type="submit" name="data" value="Skin25" id="choosed_skin">Skin25</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin25">Skin25</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">51 - 52 Level</span>
+                <img src="/static/images/sprites/snake26.png">
+                {% if choosed_skin == "static/images/sprites/snake26.png" %}
+                <button type="submit" name="data" value="Skin26" id="choosed_skin">Skin26</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin26">Skin26</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">53 - 54 Level</span>
+                <img src="/static/images/sprites/snake27.png">
+                {% if choosed_skin == "static/images/sprites/snake27.png" %}
+                <button type="submit" name="data" value="Skin27" id="choosed_skin">Skin27</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin27">Skin27</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">55 - 56 Level</span>
+                <img src="/static/images/sprites/snake28.png">
+                {% if choosed_skin == "static/images/sprites/snake28.png" %}
+                <button type="submit" name="data" value="Skin28" id="choosed_skin">Skin28</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin28">Skin28</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">57 - 58 Level</span>
+                <img src="/static/images/sprites/snake29.png">
+                {% if choosed_skin == "static/images/sprites/snake29.png" %}
+                <button type="submit" name="data" value="Skin29" id="choosed_skin">Skin29</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin29">Skin29</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">59 - 60 Level</span>
+                <img src="/static/images/sprites/snake30.png">
+                {% if choosed_skin == "static/images/sprites/snake30.png" %}
+                <button type="submit" name="data" value="Skin30" id="choosed_skin">Skin30</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin30">Skin30</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">61 - 62 Level</span>
+                <img src="/static/images/sprites/snake31.png">
+                {% if choosed_skin == "static/images/sprites/snake31.png" %}
+                <button type="submit" name="data" value="Skin31" id="choosed_skin">Skin31</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin31">Skin31</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">63 - 64 Level</span>
+                <img src="/static/images/sprites/snake32.png">
+                {% if choosed_skin == "static/images/sprites/snake32.png" %}
+                <button type="submit" name="data" value="Skin32" id="choosed_skin">Skin32</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin32">Skin32</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">65 - 66 Level</span>
+                <img src="/static/images/sprites/snake33.png">
+                {% if choosed_skin == "static/images/sprites/snake33.png" %}
+                <button type="submit" name="data" value="Skin33" id="choosed_skin">Skin33</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin33">Skin33</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">67 - 68 Level</span>
+                <img src="/static/images/sprites/snake34.png">
+                {% if choosed_skin == "static/images/sprites/snake34.png" %}
+                <button type="submit" name="data" value="Skin34" id="choosed_skin">Skin34</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin34">Skin34</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">69 - 70 Level</span>
+                <img src="/static/images/sprites/snake35.png">
+                {% if choosed_skin == "static/images/sprites/snake35.png" %}
+                <button type="submit" name="data" value="Skin35" id="choosed_skin">Skin35</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin35">Skin35</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">71 - 72 Level</span>
+                <img src="/static/images/sprites/snake36.png">
+                {% if choosed_skin == "static/images/sprites/snake36.png" %}
+                <button type="submit" name="data" value="Skin36" id="choosed_skin">Skin36</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin36">Skin36</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">73 - 74 Level</span>
+                <img src="/static/images/sprites/snake37.png">
+                {% if choosed_skin == "static/images/sprites/snake37.png" %}
+                <button type="submit" name="data" value="Skin37" id="choosed_skin">Skin37</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin37">Skin37</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">75 - 76 Level</span>
+                <img src="/static/images/sprites/snake38.png">
+                {% if choosed_skin == "static/images/sprites/snake38.png" %}
+                <button type="submit" name="data" value="Skin38" id="choosed_skin">Skin38</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin38">Skin38</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">77 - 78 Level</span>
+                <img src="/static/images/sprites/snake39.png">
+                {% if choosed_skin == "static/images/sprites/snake39.png" %}
+                <button type="submit" name="data" value="Skin39" id="choosed_skin">Skin39</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin39">Skin39</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">79 - 80 Level</span>
+                <img src="/static/images/sprites/snake40.png">
+                {% if choosed_skin == "static/images/sprites/snake40.png" %}
+                <button type="submit" name="data" value="Skin40" id="choosed_skin">Skin40</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin40">Skin40</button>
+                {% endif %}
+           </div>
+            <div class="shop_options">
+                <span id="shop_level">81 - 82 Level</span>
+                <img src="/static/images/sprites/snake41.png">
+                {% if choosed_skin == "static/images/sprites/snake41.png" %}
+                <button type="submit" name="data" value="Skin41" id="choosed_skin">Skin41</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin41">Skin41</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">83 - 84 Level</span>
+                <img src="/static/images/sprites/snake42.png">
+                {% if choosed_skin == "static/images/sprites/snake42.png" %}
+                <button type="submit" name="data" value="Skin42" id="choosed_skin">Skin42</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin42">Skin42</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">85 - 86 Level</span>
+                <img src="/static/images/sprites/snake43.png">
+                {% if choosed_skin == "static/images/sprites/snake43.png" %}
+                <button type="submit" name="data" value="Skin43" id="choosed_skin">Skin43</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin43">Skin43</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">87 - 88 Level</span>
+                <img src="/static/images/sprites/snake44.png">
+                {% if choosed_skin == "static/images/sprites/snake44.png" %}
+                <button type="submit" name="data" value="Skin44" id="choosed_skin">Skin44</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin44">Skin44</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">89 - 90 Level</span>
+                <img src="/static/images/sprites/snake45.png">
+                {% if choosed_skin == "static/images/sprites/snake45.png" %}
+                <button type="submit" name="data" value="Skin45" id="choosed_skin">Skin45</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin45">Skin45</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">91 - 92 Level</span>
+                <img src="/static/images/sprites/snake46.png">
+                {% if choosed_skin == "static/images/sprites/snake46.png" %}
+                <button type="submit" name="data" value="Skin46" id="choosed_skin">Skin46</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin46">Skin46</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">93 - 94 Level</span>
+                <img src="/static/images/sprites/snake47.png">
+                {% if choosed_skin == "static/images/sprites/snake47.png" %}
+                <button type="submit" name="data" value="Skin47" id="choosed_skin">Skin47</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin47">Skin47</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">95 - 96 Level</span>
+                <img src="/static/images/sprites/snake48.png">
+                {% if choosed_skin == "static/images/sprites/snake48.png" %}
+                <button type="submit" name="data" value="Skin48" id="choosed_skin">Skin48</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin48">Skin48</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">97 - 98 Level</span>
+                <img src="/static/images/sprites/snake49.png">
+                {% if choosed_skin == "static/images/sprites/snake49.png" %}
+                <button type="submit" name="data" value="Skin49" id="choosed_skin">Skin49</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin49">Skin49</button>
+                {% endif %}
+           </div>
+           <div class="shop_options">
+                <span id="shop_level">99 - 100 Level</span>
+                <img src="/static/images/sprites/snake50.png">
+                {% if choosed_skin == "static/images/sprites/snake50.png" %}
+                <button type="submit" name="data" value="Skin50" id="choosed_skin">Skin50</button>
+                {% else %}
+                <button type="submit" name="data" value="Skin50">Skin50</button>
+                {% endif %}
+           </div>
+         </form>
+        {% endif %}
+        </main>
+        <aside id="aside_right">
+
+        </aside>
+    </section>
+    {% if type_choose != "see_shop" %}
+    <footer id="footer">
+        
+    </footer>
+    {% endif %}
+    <script type="text/javascript">
+
+      {% if type_choose == "see_statistic" %}
+        let statistic = JSON.parse({{statistic|tojson|safe}});
+        document.getElementById("statistic_player_level").textContent = statistic[0];
+        document.getElementById("statistic_player_points_level").textContent = statistic[1];
+        document.getElementById("statistic_player_ranking").textContent = statistic[2];
+        document.getElementById("statistic_player_win").textContent = statistic[3];
+        document.getElementById("statistic_player_defeat").textContent = statistic[4];
+        document.getElementById("statistic_player_points_ranking").textContent = statistic[5];
+       {% endif %}
+
+      {% if type_choose == "see_ranking" %}
+       let ranking_increments = 0;
+       let max_show = 10;
+       let ranking_data_by_level_points = JSON.parse({{data_table_level_points|tojson|safe}});
+       let ranking_data_by_ranking_points = JSON.parse({{data_table_ranking_points|tojson|safe}});
+       console.log(ranking_data_by_level_points)
+       console.log(ranking_data_by_ranking_points)
+       let how_much = ranking_data_by_level_points.length;
+       let what_to_see = 'normal';
+
+
+       switch_ranking('none');
+
+
+       function delete_elements_from_table()
+       {
+           let ran_table = document.querySelector("#ranking_table");
+           let nested_rows = document.querySelectorAll(".ranking_table_row");
+           while(ran_table.firstChild)
+              ran_table.removeChild(ran_table.lastChild);
+       }
+       function switch_ranking(direction,par = what_to_see,dblclick)
+       {
+           if(par != what_to_see)
+           {
+               what_to_see = par;
+               delete_elements_from_table();
+               ranking_increments = 0;
+               max_show = 10;
+               show_ranking(direction,ranking_increments,10,max_show,what_to_see);
+           }
+           else if(dblclick == true)
+           {
+               delete_elements_from_table();
+               show_ranking(direction,ranking_increments,10,max_show,what_to_see);
+           }
+           else
+           {
+               show_ranking(direction,ranking_increments,10,max_show,what_to_see);
+           }
+       }
+       function show_ranking(direct,count = ranking_increments,value,max,what="normal")
+       {
+           if(direct == 'left')
+           {
+                if(ranking_increments-value < 0)
+                {
+                    ranking_increments = 0;
+                    delete_elements_from_table();
+                    count = ranking_increments;
+                }
+                else
+                {
+                    ranking_increments -= value;
+                    max_show -= value;
+                    delete_elements_from_table();
+                    count = ranking_increments;
+                }
+           }
+           if(direct == 'right')
+           {
+                if(ranking_increments+value >= how_much)
+                {
+                    delete_elements_from_table();
+                    count = ranking_increments;
+                }
+                else
+                {
+                    delete_elements_from_table();
+                    max_show += value;
+                    ranking_increments += value;
+                    count = ranking_increments;
+                }
+           }
+           let ran_table = document.querySelector("#ranking_table");
+           let type_ranking_tr = document.createElement("tr");
+           type_ranking_tr.classList.add('ranking_table_first_row');
+           let td_1 = document.createElement("td");
+           td_1.textContent = "Position";
+           let td_2 = document.createElement("td");
+           td_2.textContent = "Player";
+
+           if(what == 'normal')
+           {
+             let td_3 = document.createElement("td");
+             td_3.textContent = "Level";
+             let td_4 = document.createElement("td");
+             td_4.textContent = "Level Points";
+             td_4.style.paddingRight = "20px";
+             type_ranking_tr.append(td_1);
+             type_ranking_tr.append(td_2);
+             type_ranking_tr.append(td_3);
+             type_ranking_tr.append(td_4);
+             ran_table.append(type_ranking_tr);
+           }
+           else if(what == 'tournament')
+           {
+             let td_3 = document.createElement("td");
+             td_3.textContent = "Kills";
+             let td_4 = document.createElement("td");
+             td_4.textContent = "Deaths";
+             let td_5 = document.createElement("td");
+             td_5.textContent = "Ranking Points";
+             td_5.style.paddingRight = "20px";
+             type_ranking_tr.append(td_1);
+             type_ranking_tr.append(td_2);
+             type_ranking_tr.append(td_3);
+             type_ranking_tr.append(td_4);
+             type_ranking_tr.append(td_5);
+             ran_table.append(type_ranking_tr);
+           }
+
+           let from = 0;
+           if(what == 'normal')
+           for(let property = 0; property < ranking_data_by_level_points.length; property++)
+            {
+                   if(from >= count && from < max_show)
+                   {
+                       let tr = document.createElement("tr");
+                       tr.classList.add('ranking_table_row');
+                       let td1 = document.createElement("td");
+                       td1.textContent = from+1;
+                       td1.style.color = "#b6c8b9";
+                       let td2 = document.createElement("td");
+                       td2.textContent = ranking_data_by_level_points[property][0];
+
+
+                       let td3 = document.createElement("td");
+                       td3.textContent = ranking_data_by_level_points[property][1];
+                       td3.style.color = "#b6c8b9";
+                       let td4 = document.createElement("td");
+                       td4.textContent = ranking_data_by_level_points[property][2];
+                       td4.style.paddingRight = "20px";
+                       tr.append(td1);
+                       tr.append(td2);
+                       tr.append(td3);
+                       tr.append(td4);
+                       ran_table.append(tr);
+                   }
+                from++;
+            }
+           else if(what == 'tournament')
+            for(let property = 0; property < ranking_data_by_ranking_points.length; property++)
+            {
+                   if(from >= count && from < max_show)
+                   {
+                       let tr = document.createElement("tr");
+                       tr.classList.add('ranking_table_row');
+                       let td1 = document.createElement("td");
+                       td1.textContent = from+1;
+                       td1.style.color = "#b6c8b9";
+                       let td2 = document.createElement("td");
+                       td2.textContent = ranking_data_by_ranking_points[property][0];
+
+
+                       let td3 = document.createElement("td");
+                       td3.textContent = ranking_data_by_ranking_points[property][1];
+                       td3.style.color = "#b6c8b9";
+                       let td4 = document.createElement("td");
+                       td4.textContent = ranking_data_by_ranking_points[property][2];
+                       let td5 = document.createElement("td");
+                       td5.textContent = ranking_data_by_ranking_points[property][3];
+                       td5.style.color = "#b6c8b9";
+                       td5.style.paddingRight = "20px";
+                       tr.append(td1);
+                       tr.append(td2);
+                       tr.append(td3);
+                       tr.append(td4);
+                       tr.append(td5);
+                       ran_table.append(tr);
+                   }
+                from++;
+            }
+
+       }
+       {% endif %}
+
+    </script>
+</body>
+</html>

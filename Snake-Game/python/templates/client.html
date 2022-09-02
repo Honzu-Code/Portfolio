@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Snake</title>
+    <link rel= "stylesheet" href= "/static/styles/client.css">
+    <script>
+        const serverDelay = 0.04
+    </script>
+    <script src="static/scripts/Point.js"></script>
+    <script src="static/scripts/Food.js"></script>
+    <script src="static/scripts/Bullet.js"></script>
+    <script src="static/scripts/Snake.js"></script>
+    <script src="static/scripts/decode2.js"></script>
+    <script src="static/scripts/Game.js"></script>
+</head>
+
+<body>
+    <div id="gameScreen"></div>
+    <div id="respawnMenu" style="display:none;position:fixed;top:0px;left:0px;">
+       <div id="respawnKey">
+        <img src="static/images/transparent-logo.png">
+        <span id="respawnText">Play Again!</span>
+        <a href="{{backURL}}" class="button" id="backButton">Back to Menu</a>
+       </div>
+    </div>
+
+    <script>
+        // console.log("{{key}}")
+        let key = "{{key}}";
+            (function () {
+                "use strict"
+                const socket = new WebSocket('ws://127.0.0.1:9000/websocket');
+                const container = document.getElementById("gameScreen")
+                const game = new Game(container, socket, onDeath)
+
+                socket.addEventListener("open", function(){
+			socket.send(key)
+			game.respawn()
+		})
+
+		document.getElementById("backButton").addEventListener("click", function(e){
+			e.stopPropagation()
+		})
+
+                function onDeath(msg) {
+                    var div = document.getElementById("respawnMenu")
+                    var self = this;
+                    div.style.display = "block"
+                    // div.querySelector("#deathMsg").innerText = msg
+                    div.querySelector("#respawnKey").onclick = () => {
+                        self.respawn()
+                        div.style.display = "none"
+                    }
+                }
+            })()
+    </script>
+</body>
+
+</html>

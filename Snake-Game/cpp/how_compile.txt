@@ -1,0 +1,8 @@
+g++ -std=c++0x server.cpp -lboost_system -D_WEBSOCKETPP_CPP11_STL_ -lpthread
+
+c++ ./server.cpp -lpthread -Wall -Werror -Ofast
+
+//compilation MySQL connector c++
+g++ -Wall -I/usr/include/cppconn -o testapp test-mysql.cpp -L/usr/lib -lmysqlcppconn
+
+g++ -std=c++0x server.cpp -Wall -I/usr/include/cppconn -L/usr/lib -lmysqlcppconn -lboost_system -D_WEBSOCKETPP_CPP11_STL_ -lpthread -Ofast
