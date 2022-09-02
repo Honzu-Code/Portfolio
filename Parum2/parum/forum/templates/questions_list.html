@@ -1,0 +1,206 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'list_of_questions.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <title>Parum Forum</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="navMainBlock">
+            <div class="navFirstBlock">
+                <a href="{% url 'main' %}"><img src="{% static 'main/logo.png' %}"></a>
+                <div class="navFirstOptions">
+                    <span><a href="{% url 'main' %}">Home</a></span>
+                    <span><a href="{% url 'listofquestions' %}">Questions</a></span>
+                </div>
+            </div>
+            <div class="navSecondBlock">
+                <div class="navSecondBlockSearch">
+                    <form method="POST" action="{% url 'filtersearchquestions' %}" id="searchform">
+                        {% csrf_token %}
+                        <i class="fas fa-search" id="navSecondBlockSearch"></i>
+                        <input type="search" placeholder="Search Forum" id="navSearchBar" name="search">
+                        <i class="fas fa-times" id="navSecondBlockDelete"></i>
+                    </form>
+                </div>
+                <div class="navSecondOptions">
+                    {% if user == "" %}
+                    <span><a href="{% url 'account' name='login' %}">Log In</a></span>
+                    {% else %}
+                    <a href="#">
+                        <img src="{{ img }}">
+                        <span>{{user}}</span>
+                    </a>
+                    <div class="navSecondOptionsElse">
+                        <span><a href="{% url 'logout' %}">Log Out</a></span>          
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="boxSection">
+            <section class="section">
+                <div class="sectionLinks">
+                      <a href="{% url 'askquestion' %}">Ask a Question</a>
+                      <a href="#">
+                        <span>Latest</span>
+                        <i class="fas fa-angle-down"></i>
+                      </a>
+                </div>
+            </section>
+        </div>
+        <div class="boxContent">
+            <div class="content">
+                <aside>
+                    <div class="asideMainTags">
+                        <a href="{% url 'listofquestions' %}" id="mainTagsArticles">
+                            <i class="far fa-newspaper"></i>
+                            <span>All Questions</span>
+                        </a>
+                        <a href="#" id="mainTagsTags">
+                            <i class="fas fa-tags"></i>
+                            <span>Tags</span>
+                        </a>
+                    </div>
+                    <div class="asideElseTags">
+                        <a href="{% url 'filtertagsquestions' name='Coding' %}" id="elseTagsCode">
+                            <i class="fas fa-code"></i>
+                            <span>Coding</span>
+                        </a>
+                        <a href="{% url 'filtertagsquestions' name='Electronics' %}" id="elseTagsElectronics">
+                            <i class="fas fa-car-battery"></i>
+                            <span>Electronics</span>
+                        </a>
+                    </div>
+                </aside>
+                <article>
+                    {% for question in questions %}
+                    <a href="{% url 'question' name=question.id %}">
+                    <div class="articles">
+                        <div class="articlesMainData">
+                            <div class="articlesImg">
+                                <img src="{{ question.who_writed.avatar.url }}" width="100px" height="100px">
+                            </div>
+                            <div class="articleContent">
+                                <h2 class="articleContentTitle">{{ question.title }}</h2>
+                                <div class="articleContentReplied">
+                                    <i class="fas fa-reply"></i>
+                                    <span id="articleContentRepliedUser"> {{ question.who_writed.username }} </span>
+                                    <span>{{ question.pub_date }}</span>
+                                </div>
+                                <span class="articleContentText">
+                                    {{ question.text | truncatechars:100 }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="articleElseData">
+                            <div class="articleElseDataTag">
+                                <i class="fas fa-code"></i>
+                                <span class="category">{{ question.category }}</span>
+                            </div>
+                            <div class="articleElseDataNumbersComments">
+                                <i class="far fa-comment"></i>
+                                <span class="numberAnswers"></span>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    {% endfor %}
+                </article>
+            </div>
+        </div>
+        <div class="boxExtendPaginators">
+            <div class="boxPaginators">
+                <div class="paginators">
+                    <span class="first">
+                    {% if questions.has_previous %}
+                        <a href="?page={{ questions.previous_page_number }}">
+                            <i class="fas fa-angle-left"></i>
+                        </a>
+                    {% endif %}
+                    </span>
+                    <span class="second">
+                        Page {{ questions.number }} of {{ questions.paginator.num_pages }}
+                    </span>
+                    <span class="third">
+                        {% if questions.has_next %}
+                        <a href="?page={{ questions.next_page_number }}">
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <span>Copyright &#169; by Honzu Alright Reserved</span>
+    </footer>
+    <script>
+
+        //Tags
+        let deletesearch = document.getElementById("navSecondBlockDelete");
+        deletesearch.addEventListener("click",deletetext);
+        function deletetext()
+        {
+            let search = document.querySelector("#navSearchBar");
+            search.value = "";
+        }
+
+        let switchtags = document.querySelector("#mainTagsTags");
+        switchtags.addEventListener("click",showhidetags);
+        function showhidetags()
+        {
+            let container = document.querySelector(".asideElseTags");
+            if (container.style.display === "none")
+                container.style.display = "flex";
+            else
+                container.style.display = "none";
+        }
+
+        let answers = document.querySelectorAll(".numberAnswers");
+        let all = document.querySelectorAll(".articleElseDataTag");
+        let all_icons_category = document.querySelectorAll(".articleElseDataTag i")
+        let what_categories = JSON.parse('{{categories|safe}}');
+        let number_of_answers = JSON.parse("{{numbersanswers|safe}}");
+        let iterator = 0;
+        answers.forEach(function(com) {
+            com.textContent = number_of_answers[iterator];
+            iterator++;
+        });
+        iterator = 0;
+        all.forEach(function(cat){
+            if(what_categories[iterator] == "Coding") 
+               {
+                 cat.style.backgroundColor = "#000000";
+                 all_icons_category[iterator].className = "fas fa-code";
+               }
+            else
+               {
+               cat.style.backgroundColor = "#82FF9E";
+               all_icons_category[iterator].className = "fas fa-car-battery";
+               }
+            iterator++;             
+        });
+        iterator = 0;
+
+
+        //search form add submit
+
+        let form = document.querySelector("#searchform");
+        function log(event){
+            event.preventDeafult();
+        }
+        form.addEventListener("submit",log);
+    </script>
+</body>
+</html>

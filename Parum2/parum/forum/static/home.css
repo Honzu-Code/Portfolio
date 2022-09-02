@@ -1,0 +1,423 @@
+/* HEADER STYLES */
+
+body
+{
+  background-color: white;
+}
+
+.header
+{
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+
+.navMainBlock
+{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.navFirstBlock,.navSecondBlock
+{
+    display: flex;
+    align-items: center;
+}
+
+.navFirstOptions,.navSecondOptions
+{
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.navFirstOptions span,.navSecondOptions span
+{
+    margin: 0px 5px;
+    color: gray;
+}
+
+
+
+.navSecondOptions
+{
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.navSecondOptions a
+{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.navSecondOptions a img
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.navSecondOptionsElse
+{
+    position: relative;
+    display: none;
+    left: 200px;
+}
+
+.navSecondOptions:hover .navSecondOptionsElse
+{
+    display: flex;
+    left: 0px;
+    transition: left 0.9s;
+}
+
+
+
+.navFirstOptions span a,.navSecondOptions span a
+{
+    text-decoration: none;
+    color: gray;
+}
+
+.navSecondBlockSearch
+{
+    position: relative;
+}
+
+#navSecondBlockSearch
+{
+    position: absolute;
+    top: 50%;
+    left: 3%;
+    transform: translate(0%,-50%);
+}
+
+#navSecondBlockDelete
+{
+    position: absolute;
+    top: 50%;
+    right: 12%;
+    transform: translate(0%,-50%);
+    cursor: pointer;
+}
+
+.navSecondBlock input[type='search']
+{
+    font-size: 15px;
+    padding: 0px 15%;
+    border-radius: 2px;
+    width: 220px;
+    height: 40px;
+    margin-right: 20px;
+    background-color: #DFE3EE;
+    border: none;
+    transition: 1s;
+}
+
+.navSecondBlock input[type='search']:hover
+{
+    width: 500px;
+    padding: 0px 10%;
+    transition: 1s;
+}
+
+.navSecondBlock input[type='search']:hover + #navSecondBlockDelete
+{
+    right: 8%;
+}
+
+
+/*  MAIN  STYLES */
+
+main
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.boxSection
+{
+    display: flex;
+    justify-content: center;
+}
+
+.section
+{
+    display: flex;
+    width: 80%;
+    padding: 50px 0px;
+}
+
+.sectionLinks
+{
+    display: flex;
+    width: 25%;
+    justify-content: space-between;
+}
+
+.sectionLinks a
+{
+    background-color: #DC602E;
+    color: white;
+    text-decoration: none;
+    width: 200px;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.sectionLinks:only-child a:only-child
+{
+    width: 100px;
+    background-color: #F1F2F6;
+    color: #8686a1;
+    position: relative;
+    left: 74%;
+}
+
+.sectionLinks a:nth-child(2)
+{
+    background-color: #F1F2F6;
+    color: #8686a1;
+    width: 100px;
+}
+
+.boxContent
+{
+    display: flex;
+    justify-content: center;
+}
+
+.content
+{
+    display: flex;
+    width: 80%;
+    justify-content: center;
+}
+
+.content aside
+{
+    width: 25%;
+}
+
+.content article
+{
+    width: 75%;
+}
+
+.asideMainTags , .asideElseTags
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.asideElseTags
+{
+    margin-top: 30px;
+}
+
+.asideMainTags a, .asideElseTags a
+{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    color: gray;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 17px;
+    width: 130px;
+    margin: 10px 0px;
+}
+
+.asideMainTags a:hover, .asideElseTags a:hover
+{
+    color: chocolate;
+}
+
+.asideMainTags a span, .asideElseTags a span
+{
+    display: block;
+    width: 100px;
+}
+
+#mainTagsArticles i
+{
+    color: chocolate;
+}
+
+#mainTagsTags i
+{
+    color: #758BFD;
+}
+
+#elseTagsCode i
+{
+    color: #171219;
+}
+
+#elseTagsElectronics i
+{
+    color: #82FF9E;
+}
+
+
+article
+{
+    display: flex;
+    flex-direction: column;
+}
+
+article > a
+{
+    margin: 10px 0px;
+    text-decoration: none;
+}
+
+article > a:first-child
+{
+    margin-top: 0px;
+}
+
+.articles
+{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    font-family: sans-serif;
+    color: gray;
+}
+
+.articlesMainData
+{
+    display: flex;
+    align-items: center;
+}
+
+.articlesImg
+{
+    margin-right: 20px;
+}
+
+.articlesImg img
+{
+    width: 100px;
+    height: 100px;
+}
+
+.articleContent
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.articleContentTitle
+{
+    padding-left: 10px 0px;
+    margin: 0px;
+}
+
+.articleContentReplied
+{
+    margin: 5px 0px;
+}
+
+.articleContentReplied span
+{
+    color: #bdbdbd;
+    margin: 5px 0px;
+}
+
+#articleContentRepliedUser
+{
+    color: gray;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.articleContentText
+{
+    color: #bdbdbd;
+}
+
+.articleElseData
+{
+    display: flex;
+}
+
+.articleElseDataTag
+{
+    display: flex;
+    align-items: center;
+    height: 25px;
+    margin-right: 30px;
+    background-color: #171219;
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: white;
+}
+
+.articleElseDataTag span
+{
+    margin-left: 3px;
+}
+
+.articleElseDataNumbersComments
+{
+    display: flex;
+    align-items: center;
+    height: 25px;
+}
+
+.articleElseDataNumbersComments span
+{
+    margin-left: 10px;
+}
+
+.boxExtendPaginators
+{
+    display: flex;
+    justify-content: center;
+}
+
+.boxPaginators
+{
+    display: flex;
+    width: 80%;
+    justify-content: right;
+}
+
+.paginators
+{
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    font-family: sans-serif;
+    font-size: 20px;
+    margin: 30px 0px;
+
+}
+
+.paginators span a
+{
+    text-decoration: none;
+    padding: 10px;
+}
+
+footer
+{
+    border-top: 1px solid gray;
+    position: absolute;
+    bottom: 0;
+    width: 99%;
+    margin-top: 40px;
+    text-align: center;
+    padding: 30px 0px;
+}

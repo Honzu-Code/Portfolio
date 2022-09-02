@@ -1,0 +1,11 @@
+﻿  SFML-TEST-2.cpp
+C:\Visual-Projects\SFML-TEST-2\SFML-TEST-2\SFML-TEST-2.cpp(38,53): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+  SFML-TEST-2.vcxproj -> C:\Visual-Projects\SFML-TEST-2\x64\Debug\SFML-TEST-2.exe

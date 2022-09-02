@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'writearticle.css' %}">
+    {% if what == "Write" %}
+    <title>Write Article</title>
+    {% else %}
+    <title>Edit Article</title>
+    {% endif %}
+</head>
+<body>
+    <main>
+        {% if what == "Write" %}
+        <form method="POST" action="{% url 'writearticle' %}" enctype="multipart/form-data">
+        {% else %}
+        <form method="POST" action="{% url 'editarticle' name=nameofarticle %}" enctype="multipart/form-data">
+        {% endif %}
+            {% csrf_token %}
+            <div class="backToMainPage">
+                <a href="{% url 'main' %}">
+                    <i class="fas fa-reply"></i>
+                    <label>Back to Main Page</label>
+                </a>
+            </div>
+            <div class="titleOfArticle">
+                <label id="labelTitle">Title of an Article</label>
+                {% if what == "Write" %}
+                <input type="text" name="title">
+                {% else %}
+                <input type="text" name="title" value="{{nameofarticle}}">
+                {% endif %}
+            </div>
+            <div class="descriptionOfArticle">
+                <label id="labelDescription">Description of an Article</label>
+                {% if what == "Write" %}
+                <textarea name="description"></textarea>
+                {% else %}
+                <textarea name="description">{{textofarticle}}</textarea>
+                {% endif %}
+            </div>
+            <div class="categoryofArticle">
+                <span>Category of an Article</span>
+                <select name="category">
+                    <option value="Coding">Coding</option>
+                    <option value="Electronics">Electronics</option>
+                </select>
+            </div>
+            <div class="imageOfArticle">
+                <label id="labelImage">Image of an Article</label>
+                <input type="file" name="avatar">
+            </div>
+            {% if message != "" %}
+            <div class="message">
+                {{message}}
+            </div>
+            {% endif %}
+            <input type="submit" value="Send an Article">
+        </form>
+    </main>
+</body>
+</html>

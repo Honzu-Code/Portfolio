@@ -1,0 +1,39 @@
+﻿  Pong.cpp
+  ball.cpp
+C:\Visual-Projects\Pong\Pong\ball.cpp(49,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Visual-Projects\Pong\Pong\ball.cpp(49,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Visual-Projects\Pong\Pong\ball.cpp(59,17): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Pong\Pong\ball.cpp(60,17): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Pong\Pong\ball.cpp(64,19): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Pong\Pong\ball.cpp(65,19): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Pong\Pong\ball.cpp(69,21): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Pong\Pong\ball.cpp(70,21): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  opponent.cpp
+  player.cpp
+  score.cpp
+  Generating Code...
+  Pong.vcxproj -> C:\Visual-Projects\Pong\x64\Debug\Pong.exe

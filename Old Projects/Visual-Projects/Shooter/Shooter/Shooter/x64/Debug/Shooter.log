@@ -1,0 +1,31 @@
+﻿  Shooter.cpp
+C:\Visual-Projects\Shooter\Shooter\Shooter\title.h(14,7): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Visual-Projects\Shooter\Shooter\Shooter\Shooter.cpp(28,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Visual-Projects\Shooter\Shooter\Shooter\Shooter.cpp(102,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  player.cpp
+C:\Visual-Projects\Shooter\Shooter\Shooter\player.cpp(20,22): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Shooter\Shooter\Shooter\player.cpp(22,22): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Shooter\Shooter\Shooter\player.cpp(24,99): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Shooter\Shooter\Shooter\player.cpp(24,61): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Generating Code...
+  Shooter.vcxproj -> C:\Visual-Projects\Shooter\Shooter\x64\Debug\Shooter.exe

@@ -1,0 +1,293 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'article.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <title>Parum Forum</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="navMainBlock">
+            <div class="navFirstBlock">
+                <a href="{% url 'main' %}"><img src="{% static 'main/logo.png' %}"></a>
+                <div class="navFirstOptions">
+                    <span><a href="{% url 'main' %}">Home</a></span>
+                    <span><a href="{% url 'listofquestions' %}">Questions</a></span>
+                </div>
+            </div>
+            <div class="navSecondBlock">
+                <div class="navSecondBlockSearch">
+                    <form method="POST" action="{% url 'filtersearcharticles' %}" id="searchform">
+                        {% csrf_token %}
+                        <i class="fas fa-search" id="navSecondBlockSearch"></i>
+                        <input type="search" placeholder="Search Forum" id="navSearchBar" name="search">
+                        <i class="fas fa-times" id="navSecondBlockDelete"></i>
+                    </form>
+                </div>
+                <div class="navSecondOptions">
+                    {% if user == "" %}
+                    <span><a href="{% url 'account' name='login' %}">Log In</a></span>
+                    {% else %}
+                    <a href="#">
+                        <img src="{{ img }}">
+                        <span>{{user}}</span>
+                    </a>
+                    <div class="navSecondOptionsElse">
+                        <span><a href="{% url 'logout' %}">Log Out</a></span>          
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="boxSection">
+            <section class="section">
+                <div class="sectionLinks">
+                    {% if owner == "true" %}
+                      <a href="{% url 'editarticle' name=article.id %}">Edit an Article</a>
+                    {% endif %}
+                      <a href="#commentsBlock">
+                        <span>Comments</span>
+                        <i class="fas fa-angle-down"></i>
+                      </a>
+                </div>
+            </section>
+        </div>
+        <div class="boxContent">
+            <div class="content">
+                <aside>
+                    <div class="asideMainTags">
+                        <a href="{% url 'main' %}" id="mainTagsArticles">
+                            <i class="far fa-newspaper"></i>
+                            <span>All Articles</span>
+                        </a>
+                        <a href="#" id="mainTagsTags">
+                            <i class="fas fa-tags"></i>
+                            <span>Tags</span>
+                        </a>
+                    </div>
+                    <div class="asideElseTags">
+                        <a href="{% url 'filtertagsarticles' name='Coding' %}" id="elseTagsCode">
+                            <i class="fas fa-code"></i>
+                            <span>Coding</span>
+                        </a>
+                        <a href="{% url 'filtertagsarticles' name='Electronics' %}" id="elseTagsElectronics">
+                            <i class="fas fa-car-battery"></i>
+                            <span>Electronics</span>
+                        </a>
+                    </div>
+                </aside>
+                <article>
+                    <div class="articles">
+                        <div class="articlesMainData">
+                            <div class="articlesImg">
+                                <img src="{{ article.image_of_title.url }}">
+                            </div>
+                            <div class="articleContent">
+                                <h2 class="articleContentTitle">{{article.title}}</h2>
+                                <div class="articleContentReplied">
+                                    <i class="fas fa-reply"></i>
+                                    <span id="articleContentRepliedUser">{{article.who_writed.username}}</span>
+                                    <span>{{article.pub_date}}</span>
+                                </div>
+                                <span class="articleContentText">
+                                    {{article.text}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="articleElseData">
+                            <div class="articleElseDataTag">
+                                <i class="fas fa-code"></i>
+                                <span>{{ category }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="commentsBox">
+                        <div class="commentsIntro">
+                            <span>Comments: </span>
+                            <span>Number of comments: 2</span>
+                        </div>
+                        <div class="commentsBlock">
+                            {% for com in comments %}
+                            <div class="commentsUser">
+                                <div class="commentsUserAvatar">
+                                    <img src="{{ com.who_comment.avatar.url }}">
+                                </div>
+                                <div class="commentsUserData">
+                                    <div class="commentsUserFirstData">
+                                        <span>{{ com.who_comment.username }}</span>
+                                        <span>{{ com.com_date }}</span>
+                                        {% if user == com.who_comment.username %}
+                                        <a href="{%  url 'editcomment' article=article.id  comment=com.id %}"><i class="fas fa-pen"></i></a>
+                                        {% endif %}
+                                        <a href="{% url 'addreplay' comment=com.id %}" class="replay"><i class="fas fa-reply"></i></a>
+                                        <span id="showReplays">Show Replays</span>
+                                    </div>
+                                    <div class="commentsUserSecondData">
+                                        <span>
+                                            {{ com.text }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hide">
+                              {% for rep in replays %}
+                                {% if rep.comment == com %}
+                            <div class="replaysUser">
+                                <div class="commentsUserAvatar">
+                                    <img src="{{ rep.who_replay.avatar.url }}">
+                                </div>
+                                <div class="commentsUserData">
+                                    <div class="commentsUserFirstData">
+                                        <span>{{ rep.who_replay.username }}</span>
+                                        <span>{{ rep.com_date }}</span>
+                                        {% if user == rep.who_replay.username %}
+                                        <a href="{% url 'editreplay' comment=com.id replay=rep.id %}"><i class="fas fa-pen"></i></a>
+                                        {% endif %}
+                                        <a href="{% url 'addreplay' comment=com.id %}" class="replay"><i class="fas fa-reply"></i></a>
+                                    </div>
+                                    <div class="commentsUserSecondData">
+                                        <span>
+                                            {{ rep.text }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                                {% endif %}
+                               {% endfor %}
+                            </div>
+                            {% endfor %}                           
+                            <div class="commentsInput">
+                                {% if what == "AddComment" and user != "" %}
+                                <form method="POST" action="{% url 'addcomment' name=article.id %}"  id="inputForm">
+                                    {% csrf_token %}
+                                    <textarea name="comment" id="commentText" placeholder="Comment here"></textarea>
+                                    <input type="submit" value="Send" id="sendComment">
+                                </form>
+                                {% elif what == "EditComment" and user != "" %}
+                                <form method="POST" action="{% url 'editcomment' article=article.id comment=comment.id %}" id="inputForm">
+                                    {% csrf_token %}
+                                    <textarea name="comment" id="commentText" placeholder="Comment here">{{comment.text}}</textarea>
+                                    <input type="submit" value="Send" id="sendComment">
+                                </form>
+                                {% elif what == "CreateReplay" and user != "" %}
+                                <form method="POST" action="{% url 'addreplay' comment=comment.id %}" id="inputForm">
+                                    {% csrf_token %}
+                                    <textarea name="replay" id="commentText" placeholder="Add Replay"></textarea>
+                                    <input type="submit" value="Send" id="sendComment">
+                                </form>
+                                {% elif what == "EditReplay" and user != "" %}
+                                <form method="POST" action="{% url 'editreplay' comment=comment.id replay=replay.id %}" id="inputForm">
+                                    {% csrf_token %}
+                                    <textarea name="replay" id="commentText" placeholder="Comment here">{{replay.text}}</textarea>
+                                    <input type="submit" value="Send" id="sendComment">
+                                </form>
+                                {% else %}
+                                <div>Login to write comment</div>
+                                {% endif %}
+                            </div> 
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+        //Tags
+        let deletesearch = document.getElementById("navSecondBlockDelete");
+        deletesearch.addEventListener("click",deletetext);
+        function deletetext()
+        {
+            let search = document.querySelector("#navSearchBar");
+            search.value = "";
+        }
+
+        let switchtags = document.querySelector("#mainTagsTags");
+        switchtags.addEventListener("click",showhidetags);
+        function showhidetags()
+        {
+            let container = document.querySelector(".asideElseTags");
+            if (container.style.display === "none")
+                container.style.display = "flex";
+            else
+                container.style.display = "none";
+        }
+
+        //category and comments
+        let comments = document.querySelector(".commentsIntro span:last-child");
+        let all = document.querySelector(".articleElseDataTag");
+        let icon_of_category = document.querySelector(".articleElseDataTag i");
+        let what_category = "{{category}}";
+        let number_of_comments = "{{numberscomments}}";
+
+        comments.textContent = "Number of comments: " + number_of_comments;
+        if(what_category == "Coding") 
+            {
+                all.style.backgroundColor = "#000000";
+                icon_of_category.className = "fas fa-code";
+            }
+        else
+            {
+                all.style.backgroundColor = "#82FF9E";
+                icon_of_category.className = "fas fa-car-battery";
+            }
+
+        //form search submit
+        let form = document.querySelector("#searchform");
+        function log(event){
+            event.preventDeafult();
+        }
+        form.addEventListener("submit",log);
+      
+        //show how much replays and hide replays        
+        let show_replays_button = document.querySelectorAll("#showReplays");
+        let hide_replays = document.querySelectorAll(".hide");
+        for (let i=0; i< show_replays_button.length; i++){
+            let button = show_replays_button[i];
+            if(hide_replays[i].childElementCount > 0)
+                button.textContent = "Show Replays (" + hide_replays[i].childElementCount + ")";
+            else
+                button.textContent = "";
+            button.addEventListener("click",function(){
+                if(hide_replays[i].style.display == "block")
+                hide_replays[i].style.display = "none";
+                else
+                hide_replays[i].style.display = "block";
+            });
+        }
+
+        //add sending data without reloading
+        /* 
+        $("#inputForm").submit(function (e){
+            let serializeData = $(this).serialize();
+            $.ajaxSetup({
+            headers: {
+                "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "{% url 'addcomment' name=article.id %}",
+                data: serializeData,
+                success: function(response) {
+                    console.log("work")
+                },
+                error: function (response){
+                    console.log("doesn't work")
+                } 
+            })
+            return false;
+        })
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+﻿  snake.cpp
+C:\Visual-Projects\Classical Snake\element.h(14,9): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Visual-Projects\Classical Snake\snake.h(15,7): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Visual-Projects\Classical Snake\snake.h(19,35): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Visual-Projects\Classical Snake\snake.h(20,38): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Visual-Projects\Classical Snake\snake.cpp(7,34): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Visual-Projects\Classical Snake\snake.cpp(10,61): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(55,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Visual-Projects\Classical Snake\snake.cpp(55,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Visual-Projects\Classical Snake\snake.cpp(69,42): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Visual-Projects\Classical Snake\snake.cpp(73,63): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(88,44): warning C4227: anachronism used: qualifiers on reference are ignored
+C:\Visual-Projects\Classical Snake\snake.cpp(90,21): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(91,21): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(92,28): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(93,28): warning C4244: 'initializing': conversion from 'const T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(97,79): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(97,74): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(101,80): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(101,74): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(105,80): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(105,74): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(109,80): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Visual-Projects\Classical Snake\snake.cpp(109,74): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Classical Snake.vcxproj -> C:\Visual-Projects\Classical Snake\x64\Debug\Classical Snake.exe
