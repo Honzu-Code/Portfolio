@@ -1,0 +1,31 @@
+body
+{
+    background-color: rgb(43, 157, 244);
+}
+
+form
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+form > div
+{
+    margin-bottom: 15px;
+}
+
+div > label
+{
+    margin: 5px 0px;
+}
+
+a 
+{
+
+}

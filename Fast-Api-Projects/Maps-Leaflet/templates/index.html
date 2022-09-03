@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Leaflet sample</title>
+      <link rel = "stylesheet" href = "../leaflet/leaflet.css"/>
+      <script src = "../leaflet/leaflet.js"></script>
+   </head>
+
+   <body>
+      <div id = "map" style = " position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 400px; height: 400px"></div>
+      <script>
+         // Creating map options
+         var mapOptions = {
+            center: [0, 0],
+            zoom: 0.2
+         }
+         
+         // Creating a map object
+         var map = new L.map('map', mapOptions);
+         // 50,51,15N 19,58,01 E
+         let wloszczowa = L.latLng(50.854167,19.966944)
+         let kielce = L.latLng(50.874167,20.633333)
+         let pointList = [wloszczowa,kielce]
+
+         let polyline = new L.Polyline(pointList, 
+         {
+            color: 'red',
+            weight: 3,
+            opacity: 0.5,
+            smoothFactor: 1
+         })
+
+         let marker1 = L.circleMarker(wloszczowa,{color: "#0002ff", radius: 5})
+         let marker2 = L.circleMarker(kielce,{color: "#fffd00", radius: 5})
+
+         console.log(wloszczowa.distanceTo(kielce)/1000)
+         // Creating a Layer object
+         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+         
+         // Adding layer to the map
+         map.addLayer(layer);
+         map.addLayer(marker1);
+         map.addLayer(marker2);
+         polyline.addTo(map);
+      </script>
+   </body>
+   
+</html>

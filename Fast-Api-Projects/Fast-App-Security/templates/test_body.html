@@ -1,0 +1,34 @@
+<html>
+   <head>
+      <script type="text/javascript">
+         function submitForm() {
+             var formElement = document.getElementById('myForm');
+             var data = new FormData(formElement);
+             fetch('/', {
+                   method: 'POST',
+                   headers: {
+                     'Accept': 'application/json',
+                     'Content-Type': 'application/json'
+                 },
+                   body: JSON.stringify(Object.fromEntries(data))
+                 })
+                 .then(response => response.text())
+                 .then(data => {
+                   document.getElementById("responseArea").innerHTML = data;
+                 })
+                 .catch(error => {
+                   console.error(error);
+                 });
+         }
+      </script>
+   </head>
+   <body>
+      <h1>Post JSON Data</h1>
+      <form method="post" id="myForm">
+         name : <input type="text" name="name" value="foo">
+         roll : <input type="number" name="roll" value=1>
+         <input type="button" value="Submit" onclick="submitForm()">
+      </form>
+      <div id="responseArea"></div>
+   </body>
+</html>
