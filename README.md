@@ -13,7 +13,7 @@ The technologies used to make this game:
 -MySQL  
 The project development time was about half a year.  
 
-Parum2 is an online forum where you can write articles, answer them, as well as ask and answer questions after logging in.
+Parum is an online forum where you can write articles, answer them, as well as ask and answer questions after logging in.
 
 Technologies used to make this project:  
 -HTML  
