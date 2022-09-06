@@ -1,7 +1,7 @@
 # Portfolio
 Hi there are projects here that show my programming experience.
 
-Snake-Game is a multiplayer computer game in which you control a snake with the mouse cursor. Your goal is to eat as many points as possible by eating or by eating your opponent. In exchange for the experience gained, you can choose a skin.
+OurSnake is a multiplayer computer game in which you control a snake with the mouse cursor. Your goal is to eat as many points as possible by eating or by eating your opponent. In exchange for the experience gained, you can choose a skin.
 
 The technologies used to make this game:
 
